@@ -14,4 +14,4 @@ COPY . .
 # collect static files
 RUN python manage.py collectstatic --noinput
 
-CMD ["gunicorn", "smart_asset_system.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD sh -c "python manage.py migrate && gunicorn smart_asset_system.wsgi:application --bind 0.0.0.0:8000"
